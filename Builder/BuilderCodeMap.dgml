@@ -1,79 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph DataVirtualized="True" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="@10" Category="CodeSchema_Class" Bounds="-458.620099430334,233.744427585007,153.113333333333,25" CodeSchemaProperty_IsAbstract="True" CodeSchemaProperty_IsInternal="True" CommonLabel="AbstractProductB" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="AbstractProductB" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/AbstractProductB.cs StartLineNumber=2 StartCharacterOffset=19 EndLineNumber=2 EndCharacterOffset=35)" />
-    <Node Id="@11" Category="CodeSchema_Class" Bounds="-309.536766097001,-110.113549904825,91.3766666666667,25" CodeSchemaProperty_IsInternal="True" CommonLabel="Client" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="Client" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/Client.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=16)" />
-    <Node Id="@12" Category="CodeSchema_Class" Bounds="-212.670099430334,4.88685009517519,153.643333333333,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ConcreteFactory1" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ConcreteFactory1" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/Factories/ConcreteFactory1.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=26)" />
-    <Node Id="@13" Category="CodeSchema_Class" Bounds="-28.6700994303353,4.88675009517522,153.643333333334,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ConcreteFactory2" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ConcreteFactory2" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/Factories/ConcreteFactory2.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=26)" />
-    <Node Id="@14" Category="CodeSchema_Class" Bounds="-192.250105486989,201.887250095175,116.6,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ProductA1" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ProductA1" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/ProductA1.cs StartLineNumber=2 StartCharacterOffset=10 EndLineNumber=2 EndCharacterOffset=19)" UseManualLocation="True" />
-    <Node Id="@15" Category="CodeSchema_Class" Bounds="-96.3634327636676,256.887350095175,116.6,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ProductA2" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ProductA2" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/ProductA2.cs StartLineNumber=2 StartCharacterOffset=10 EndLineNumber=2 EndCharacterOffset=19)" />
-    <Node Id="@16" Category="CodeSchema_Class" Bounds="-553.990105486988,178.744327585007,115.74,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ProductB1" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ProductB1" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/ProductB1.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=19)" />
-    <Node Id="@17" Category="CodeSchema_Class" Bounds="-337.990105486989,178.744327585007,115.74,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ProductB2" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ProductB2" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/ProductB2.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=19)" />
-    <Node Id="@18" Category="CodeSchema_Class" Bounds="-317.151766097002,-165.113649904825,106.606666666667,25" CodeSchemaProperty_IsInternal="True" CommonLabel="Program" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="Program" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/Program.cs StartLineNumber=5 StartCharacterOffset=10 EndLineNumber=5 EndCharacterOffset=17)" />
-    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="08/08/2017 11:24:41" Bounds="-593.990105486988,-245.113849904825,758.963339389987,598.858577489832" CodeSchemaProperty_StrongName="AbstractFactory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" CommonLabel="AbstractFactory" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FilePath="$(0120a622-f971-446a-94d0-fb1d66886f19.OutputPath)" Group="Expanded" Label="AbstractFactory.exe" />
-    <Node Id="@3" Category="CodeSchema_Namespace" Bounds="-337.151766097002,-205.113749904825,146.606666666667,140.0003" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="AbstractFactory" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="AbstractFactory" />
-    <Node Id="@5" Category="CodeSchema_Namespace" Bounds="-573.990105486988,138.744227585007,614.226672723321,195.0004" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="AbstractFactory.AbstractAndBaseFramework" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="AbstractFactory.AbstractAndBaseFramework" />
-    <Node Id="@7" Category="CodeSchema_Namespace" Bounds="-232.670099430334,-35.1133499048249,377.643333333333,140.0003" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="AbstractFactory.Factories" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="AbstractFactory.Factories" />
-    <Node Id="@8" Category="CodeSchema_Class" Bounds="-23.5634327636681,59.8868500951752,143.43,25" CodeSchemaProperty_IsAbstract="True" CodeSchemaProperty_IsInternal="True" CommonLabel="AbstractFactory" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="AbstractFactory" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/Factories/AbstractFactory.cs StartLineNumber=4 StartCharacterOffset=19 EndLineNumber=4 EndCharacterOffset=34)" />
-    <Node Id="@9" Category="CodeSchema_Class" Bounds="-351.050099430334,288.744527585007,153.973333333333,25" CodeSchemaProperty_IsAbstract="True" CodeSchemaProperty_IsInternal="True" CommonLabel="AbstractProductA" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="AbstractProductA" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/AbstractAndBaseFramework/AbstractProductA.cs StartLineNumber=2 StartCharacterOffset=19 EndLineNumber=2 EndCharacterOffset=35)" />
-    <Node Id="Creational{A54464BE-51DE-4305-9525-A69004429D33}" Category="CodeMap_SolutionFolder" Bounds="-613.990105486988,-285.113949904825,798.963339389987,658.858777489832" Group="Expanded" Label="Creational" UseManualLocation="True" />
+    <Node Id="@10" Category="CodeSchema_Class" Bounds="-1.8366666666667,120.000019999948,103.583333333333,25" CodeSchemaProperty_IsInternal="True" CommonLabel="Director" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="Director" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/Factories/Director.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=18)" />
+    <Node Id="@11" Category="CodeSchema_Class" Bounds="22.9966666666667,400.000019999948,102.39,25" CodeSchemaProperty_IsPublic="True" CommonLabel="Product" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="Product" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/AbstractAndBaseFramework/Product.cs StartLineNumber=6 StartCharacterOffset=17 EndLineNumber=6 EndCharacterOffset=24)" />
+    <Node Id="@12" Category="CodeSchema_Class" Bounds="305.686666666667,122.00008666667,106.606666666667,25" CodeSchemaProperty_IsInternal="True" CommonLabel="Program" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="Program" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/Program.cs StartLineNumber=6 StartCharacterOffset=10 EndLineNumber=6 EndCharacterOffset=17)" />
+    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="08/08/2017 12:18:54" Bounds="-68.3033333333333,39.9995933332017,520.596666666667,425.0009" CodeSchemaProperty_StrongName="Builder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" CommonLabel="Builder" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FilePath="$(3fa4e12d-729c-4126-b8f7-f36d5526143e.OutputPath)" Group="Expanded" Label="Builder.exe" />
+    <Node Id="@3" Category="CodeSchema_Namespace" Bounds="285.686666666667,82.0000199999478,146.606666666667,85" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="Builder" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="Builder" UseManualLocation="True" />
+    <Node Id="@4" Category="CodeSchema_Namespace" Bounds="-48.3033333333333,305.000019999948,244.99,140" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="Builder.AbstractAndBaseFramework" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="Builder.AbstractAndBaseFramework" />
+    <Node Id="@6" Category="CodeSchema_Namespace" Bounds="-21.8366666666667,80.0000199999478,192.056666666667,195" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="Builder.Factories" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" Group="Expanded" Label="Builder.Factories" />
+    <Node Id="@7" Category="CodeSchema_Class" Bounds="3.26999999999998,345.000019999948,141.843333333333,25" CodeSchemaProperty_IsAbstract="True" CodeSchemaProperty_IsInternal="True" CommonLabel="AbstractBuilder" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="AbstractBuilder" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/AbstractAndBaseFramework/AbstractBuilder.cs StartLineNumber=9 StartCharacterOffset=19 EndLineNumber=9 EndCharacterOffset=34)" />
+    <Node Id="@8" Category="CodeSchema_Class" Bounds="-1.8366666666667,175.000019999948,152.056666666667,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ConcreteBuilder1" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ConcreteBuilder1" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/Factories/ConcreteBuilder1.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=26)" />
+    <Node Id="@9" Category="CodeSchema_Class" Bounds="-1.8366666666667,230.000019999948,152.056666666667,25" CodeSchemaProperty_IsInternal="True" CommonLabel="ConcreteBuilder2" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ConcreteBuilder2" SourceLocation="(Assembly=file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/Factories/ConcreteBuilder2.cs StartLineNumber=4 StartCharacterOffset=10 EndLineNumber=4 EndCharacterOffset=26)" />
+    <Node Id="Creational{A54464BE-51DE-4305-9525-A69004429D33}" Category="CodeMap_SolutionFolder" Bounds="-88.3033333333333,-0.000506666798315791,560.596666666667,485.0011" Group="Expanded" Label="Creational" />
   </Nodes>
   <Links>
-    <Link Source="@10" Target="@9" Category="References" Bounds="-357.518022846231,258.744427585007,50.8892610745991,25.9158745187876" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@11" Target="@10" Category="References" Bounds="-374.840031527458,-85.1135499048248,106.694221367497,310.346903263376" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
+    <Link Source="@10" Target="@7" Category="References" Bounds="139.313524675307,72.8804365505006,21.3667729584949,252.769959939096" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3">
       <Category Ref="CodeSchema_Calls" />
     </Link>
-    <Link Source="@11" Target="@8" Category="References" Bounds="90.7220710784314,88.7330266340887,321.621807862012,308.767106699282" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@11" Target="@9" Category="References" Bounds="106.196775362319,311.115607179364,196.922916990467,86.3845261540069" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@12" Target="@10" Category="CodeSchema_ReturnTypeLink" Bounds="-362.023307016516,29.8868500951753,212.726827071029,197.730220784981" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@12" Target="@14" Category="CodeSchema_Calls" Bounds="-135.727980769872,29.8868500951753,1.57070187974523,163.000817820967" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@12" Target="@16" Category="CodeSchema_Calls" Bounds="-462.111750100251,29.8868500951753,300.360514799345,144.945954384443" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@12" Target="@8" Category="InheritsFrom" Bounds="-88.8818893432617,29.8860893249512,91.7406227588654,27.4224700927734" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@12" Target="@9" Category="CodeSchema_ReturnTypeLink" Bounds="371.87,142.048342047663,1.13686837721616E-13,224.403115904794" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@13" Target="@10" Category="CodeSchema_ReturnTypeLink" Bounds="-350.619778331652,29.8867500951753,375.273390161882,199.630874088965" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@13" Target="@15" Category="CodeSchema_Calls" Bounds="-30.8735870127658,29.8867500951753,74.7486267328932,218.485168310216" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@13" Target="@17" Category="CodeSchema_Calls" Bounds="-248.564628638252,29.8867500951753,273.114142007926,144.645325969787" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@13" Target="@8" Category="InheritsFrom" Bounds="53.2999267578125,29.8860893249512,0,21" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@13" Target="@9" Category="CodeSchema_ReturnTypeLink" Bounds="371.87,192.434041448458,1.70530256582424E-13,237.798530374886" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@14" Target="@9" Category="InheritsFrom" Bounds="-245.824717581684,226.887250095175,91.7103075991561,56.8518911843983" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@15" Target="@9" Category="InheritsFrom" Bounds="-188.505223188907,277.255322569293,92.1553491834026,12.4398699812419" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@16" Target="@10" Category="InheritsFrom" Bounds="-470.198181544277,203.744327585007,53.6557715588451,25.8737409294094" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@16" Target="@9" Category="References" Bounds="-491.713897705078,203.744323730469,135.178009033203,83.789794921875" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@17" Target="@10" Category="InheritsFrom" Bounds="-350.533745846372,203.744327585007,47.2447444672217,25.4893158737039" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@17" Target="@9" Category="References" Bounds="-279.431848474351,203.744327585007,4.18536310867847,76.013811552757" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@18" Target="@11" Category="CodeSchema_Calls" Bounds="-322.374053955078,-140.113952636719,0,21" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="4" />
-    <Link Source="@18" Target="@12" Category="CodeSchema_Calls" Bounds="408.617345491179,154.16648000005,45.948579918393,82.1456470579901" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@18" Target="@13" Category="CodeSchema_Calls" Bounds="428.617282882705,154.16648000005,186.175510025366,86.218310690953" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@12" Target="@10" Category="CodeSchema_Calls" Bounds="110.746666666667,132.500019999948,135.94,0" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3" />
+    <Link Source="@12" Target="@11" Category="CodeSchema_Calls" Bounds="89.9215983853197,145.000019999948,199.988118876585,247.994183388321" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
+    <Link Source="@12" Target="@7" Category="CodeSchema_Calls" Bounds="93.1112396964193,145.000019999948,194.334408451729,193.647319075158" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
+    <Link Source="@12" Target="@8" Category="CodeSchema_Calls" Bounds="150.209506619242,144.3140071362,156.044787508853,29.0392611133752" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@12" Target="@9" Category="CodeSchema_Calls" Bounds="115.569728937653,147.000119999948,210.457452166806,79.8086523006958" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
     <Link Source="@2" Target="@3" Category="Contains" FetchingParent="@2" />
-    <Link Source="@2" Target="@5" Category="Contains" FetchingParent="@2" />
-    <Link Source="@2" Target="@7" Category="Contains" FetchingParent="@2" />
-    <Link Source="@3" Target="@11" Category="Contains" FetchingParent="@3" />
-    <Link Source="@3" Target="@18" Category="Contains" FetchingParent="@3" />
-    <Link Source="@5" Target="@10" Category="Contains" FetchingParent="@5" />
-    <Link Source="@5" Target="@14" Category="Contains" FetchingParent="@5" />
-    <Link Source="@5" Target="@15" Category="Contains" FetchingParent="@5" />
-    <Link Source="@5" Target="@16" Category="Contains" FetchingParent="@5" />
-    <Link Source="@5" Target="@17" Category="Contains" FetchingParent="@5" />
-    <Link Source="@5" Target="@9" Category="Contains" FetchingParent="@5" />
-    <Link Source="@7" Target="@12" Category="Contains" FetchingParent="@7" />
-    <Link Source="@7" Target="@13" Category="Contains" FetchingParent="@7" />
-    <Link Source="@7" Target="@8" Category="Contains" FetchingParent="@7" />
-    <Link Source="@8" Target="@10" Category="CodeSchema_ReturnTypeLink" Bounds="-342.78747564788,84.8868500951753,360.007474771717,145.485460623276" IsSourceVirtualized="True" Weight="1" />
-    <Link Source="@8" Target="@9" Category="CodeSchema_ReturnTypeLink" Bounds="128.925543478261,141.424628283197,177.634682331407,86.0754029668464" IsSourceVirtualized="True" Weight="1" />
+    <Link Source="@2" Target="@4" Category="Contains" FetchingParent="@2" />
+    <Link Source="@2" Target="@6" Category="Contains" FetchingParent="@2" />
+    <Link Source="@3" Target="@12" Category="Contains" FetchingParent="@3" />
+    <Link Source="@4" Target="@11" Category="Contains" FetchingParent="@4" />
+    <Link Source="@4" Target="@7" Category="Contains" FetchingParent="@4" />
+    <Link Source="@6" Target="@10" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@8" Category="Contains" FetchingParent="@6" />
+    <Link Source="@6" Target="@9" Category="Contains" FetchingParent="@6" />
+    <Link Source="@7" Target="@11" Category="CodeSchema_ReturnTypeLink" Bounds="74.1916666666667,370.000193333202,0,21.0001000000001" IsSourceVirtualized="True" Weight="1" />
+    <Link Source="@8" Target="@11" Category="References" Bounds="74.1916666666667,199.999859999924,0,191.000433333278" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="5">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@8" Target="@7" Category="InheritsFrom" Bounds="74.1916666666667,199.999859999924,0,136.000333333278" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@9" Target="@11" Category="References" Bounds="74.1916666666666,254.999959999924,0,136.000333333278" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="5">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@9" Target="@7" Category="InheritsFrom" Bounds="74.1916666666666,254.999959999924,1.4210854715202E-14,81.0002333332778" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
     <Link Source="Creational{A54464BE-51DE-4305-9525-A69004429D33}" Target="@2" Category="Contains" FetchingParent="Creational{A54464BE-51DE-4305-9525-A69004429D33}" />
   </Links>
   <Categories>
@@ -109,7 +81,7 @@
     <Property Id="FilePath" Label="File Path" Description="File Path" DataType="System.String" />
     <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
     <Property Id="GroupLabel" DataType="System.String" />
-    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" DataType="System.String" />
     <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
     <Property Id="IsContainment" DataType="System.Boolean" />
     <Property Id="IsEnabled" DataType="System.Boolean" />
@@ -135,24 +107,18 @@
     <Name Id="Type" Label="Type" ValueType="System.Object" />
   </QualifiedNames>
   <IdentifierAliases>
-    <Alias n="1" Uri="Assembly=$(0120a622-f971-446a-94d0-fb1d66886f19.OutputPathUri)" />
+    <Alias n="1" Uri="Assembly=$(3fa4e12d-729c-4126-b8f7-f36d5526143e.OutputPathUri)" />
     <Alias n="2" Id="(@1)" />
-    <Alias n="3" Id="(@1 Namespace=AbstractFactory)" />
-    <Alias n="4" Id="Namespace=AbstractFactory.AbstractAndBaseFramework" />
-    <Alias n="5" Id="(@1 @4)" />
-    <Alias n="6" Id="Namespace=AbstractFactory.Factories" />
-    <Alias n="7" Id="(@1 @6)" />
-    <Alias n="8" Id="(@1 @6 Type=AbstractFactory)" />
-    <Alias n="9" Id="(@1 @4 Type=AbstractProductA)" />
-    <Alias n="10" Id="(@1 @4 Type=AbstractProductB)" />
-    <Alias n="11" Id="(@1 Namespace=AbstractFactory Type=Client)" />
-    <Alias n="12" Id="(@1 @6 Type=ConcreteFactory1)" />
-    <Alias n="13" Id="(@1 @6 Type=ConcreteFactory2)" />
-    <Alias n="14" Id="(@1 @4 Type=ProductA1)" />
-    <Alias n="15" Id="(@1 @4 Type=ProductA2)" />
-    <Alias n="16" Id="(@1 @4 Type=ProductB1)" />
-    <Alias n="17" Id="(@1 @4 Type=ProductB2)" />
-    <Alias n="18" Id="(@1 Namespace=AbstractFactory Type=Program)" />
+    <Alias n="3" Id="(@1 Namespace=Builder)" />
+    <Alias n="4" Id="(@1 Namespace=Builder.AbstractAndBaseFramework)" />
+    <Alias n="5" Id="Namespace=Builder.Factories" />
+    <Alias n="6" Id="(@1 @5)" />
+    <Alias n="7" Id="(@1 Namespace=Builder.AbstractAndBaseFramework Type=AbstractBuilder)" />
+    <Alias n="8" Id="(@1 @5 Type=ConcreteBuilder1)" />
+    <Alias n="9" Id="(@1 @5 Type=ConcreteBuilder2)" />
+    <Alias n="10" Id="(@1 @5 Type=Director)" />
+    <Alias n="11" Id="(@1 Namespace=Builder.AbstractAndBaseFramework Type=Product)" />
+    <Alias n="12" Id="(@1 Namespace=Builder Type=Program)" />
   </IdentifierAliases>
   <Styles>
     <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
@@ -372,7 +338,7 @@
     </Style>
   </Styles>
   <Paths>
-    <Path Id="0120a622-f971-446a-94d0-fb1d66886f19.OutputPath" Value="E:\Projects\PatternsAntipatternsAndReusableCode\AbstractFactory\bin\Debug\AbstractFactory.exe" />
-    <Path Id="0120a622-f971-446a-94d0-fb1d66886f19.OutputPathUri" Value="file:///E:/Projects/PatternsAntipatternsAndReusableCode/AbstractFactory/bin/Debug/AbstractFactory.exe" />
+    <Path Id="3fa4e12d-729c-4126-b8f7-f36d5526143e.OutputPath" Value="E:\Projects\PatternsAntipatternsAndReusableCode\Builder\bin\Debug\Builder.exe" />
+    <Path Id="3fa4e12d-729c-4126-b8f7-f36d5526143e.OutputPathUri" Value="file:///E:/Projects/PatternsAntipatternsAndReusableCode/Builder/bin/Debug/Builder.exe" />
   </Paths>
 </DirectedGraph>
