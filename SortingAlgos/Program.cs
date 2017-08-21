@@ -13,7 +13,7 @@ namespace SortingAlgos
             {
                 nums.Insert((int)(rnd.NextDouble()*100));
             }
-            Console.WriteLine("Beffore sorting: ");
+            Console.WriteLine("Before sorting: ");
             nums.DisplayElements();
             Console.WriteLine("During sorting: ");
             nums.BubbleSort();
