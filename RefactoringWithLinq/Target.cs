@@ -19,6 +19,8 @@ namespace RefactoringWithLinq
             }
         }
 
+        #region LoopRefactoring
+
         public void LoopingWithoutLinq()
         {
             for (int i = 0; i < _numbers.Length; i++)
@@ -54,6 +56,11 @@ namespace RefactoringWithLinq
                 Console.WriteLine("Value " + Convert.ToString(n));
         }
 
+        /// <summary>
+        /// This function demonstrates conditional looping with linq. Notice similarity between
+        /// this function and next (ConditionalFilteringWithLinq) but different linq functions
+        /// being used.
+        /// </summary>
         public void ConditionalLoopingWithLinq()
         {
             var selectedNumbers = Enumerable.Range(0,_numbers.Length).Where(n=>n > 300).
@@ -64,10 +71,42 @@ namespace RefactoringWithLinq
             }
         }
 
+        /// <summary>
+        /// This function demonstrates filtering on a collection using linq.
+        /// Same implementation with for loop requires more lines of code.
+        /// </summary>
         public void ConditionalFilteringWithLinq()
         {
             bool isAny = _numbers.Any(n => n >= 300);
             Console.WriteLine("Are any of the variables beyond 300? Answer is : " + Convert.ToString(isAny));
         }
+
+
+        /// <summary>
+        /// This function demonstrates evaluation of aggregate result on a collection
+        /// without using linq.
+        /// </summary>
+        public void CheckAggregateConditionWithForLoop()
+        {
+            bool bResult = true;
+            for (int nTemp = 0; nTemp < _numbers.Length; nTemp++)
+            {
+                if (_numbers[nTemp] < 150)
+                {
+                    bResult = false;
+                }
+            }
+            Console.WriteLine("Aggregate result is : " + Convert.ToString(bResult));
+        }
+
+        /// <summary>
+        /// This function demonstrates evaluation of aggregate code with linq.
+        /// </summary>
+        public void CheckAggregateConditionWithLinq()
+        {
+            bool bResult = _numbers.All(n => n < 150);
+            Console.WriteLine("Aggregate result is : " + Convert.ToString(bResult));
+        }
+        #endregion
     }
 }
