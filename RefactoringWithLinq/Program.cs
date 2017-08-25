@@ -28,6 +28,18 @@ namespace RefactoringWithLinq
             Console.WriteLine("Aggregate condition check using linq");
             targetInstance.CheckAggregateConditionWithLinq();
 
+            Console.WriteLine("Elements extraction using for loop");
+            targetInstance.ExtractNElementsWithForLoop();
+            Console.WriteLine("Elements extraction using linq");
+            targetInstance.ExtractNElementsWithLinq();
+
+            Console.WriteLine("Array intersection using for loop");
+            targetInstance.GetArrayIntersectionWithForLoop();
+            Console.WriteLine("Array intersection using linq");
+            targetInstance.GetArrayIntersectionWithLinq();
+
+            targetInstance.ContentConcatinationWithForLoop();
+            targetInstance.ContentConcatinationWithLinq();
             Console.ReadKey();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RefactoringWithLinq
@@ -106,6 +107,91 @@ namespace RefactoringWithLinq
         {
             bool bResult = _numbers.All(n => n < 150);
             Console.WriteLine("Aggregate result is : " + Convert.ToString(bResult));
+        }
+
+
+        /// <summary>
+        /// This function demonstrates extraction of first four elements using
+        /// raw c# code.
+        /// </summary>
+        public void ExtractNElementsWithForLoop()
+        {
+            int [] firstFourElements = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                firstFourElements[i] = _numbers[i];
+            }
+            Console.WriteLine("First four elements with C# loop" + firstFourElements);
+        }
+
+        /// <summary>
+        /// This function demonstrates extraction of first four elements using
+        /// LINQ code.
+        /// </summary>
+        public void ExtractNElementsWithLinq()
+        {
+            var firstFourElements = _numbers.Take(4).ToArray();
+            Console.WriteLine("First four elements with linq code" + firstFourElements);
+        }
+
+        /// <summary>
+        /// Gets array intersection using c# for loop.
+        /// What is an array intersection? Refer to http://www.codinghelmet.com/?path=exercises/array-intersection
+        /// </summary>
+        public void GetArrayIntersectionWithForLoop()
+        {
+            string[] names1 = {"Sam", "David", "Sam", "Eric", "Daniel", "Sam"};
+            string[] names2 = {"David", "Eric", "Sam"};
+
+            List<string> commonNames = new List<string>();
+            for (int i = 0; i < names1.Length; i++)
+            {
+                if(Array.FindIndex(names2, m=>m==names1[i]) != -1)
+                    commonNames.Add(names1[i]);
+            }
+            Console.WriteLine("Common names count : " + Convert.ToString(commonNames.Count));
+        }
+
+        /// <summary>
+        /// Gets array intersection with LINQ
+        /// </summary>
+        public void GetArrayIntersectionWithLinq()
+        {
+            string[] names1 = { "Sam", "David", "Sam", "Eric", "Daniel", "Sam" };
+            string[] names2 = { "David", "Eric", "Sam" };
+
+            var commonNames = names1.Intersect(names2).ToList();
+            Console.WriteLine("Common names count : " + Convert.ToString(commonNames.Count));
+        }
+
+        /// <summary>
+        /// Concatinates strings in for loop.
+        /// </summary>
+        public void ContentConcatinationWithForLoop()
+        {
+            string[] prefixList = {"Prefix1", "Prefix2", "Prefix3", "Prefix4", "Prefix5"};
+            string[] postfixList = {"Postfix1", "Postfix2", "Postfix3", "Postfix4", "Postfix5"};
+
+            for (int nTemp = 0; nTemp < prefixList.Length; nTemp++)
+            {
+                var outputText = prefixList[nTemp] + " - " + postfixList[nTemp];
+                Console.WriteLine("Concatinated output : " + outputText);
+            }
+        }
+
+        /// <summary>
+        /// Concatinates strings using linq.
+        /// </summary>
+        public void ContentConcatinationWithLinq()
+        {
+            string[] prefixList = { "Prefix1", "Prefix2", "Prefix3", "Prefix4", "Prefix5" };
+            string[] postfixList = { "Postfix1", "Postfix2", "Postfix3", "Postfix4", "Postfix5" };
+
+            var combinedOutput = prefixList.Zip(postfixList, (prefix, postfix) => prefix + " - " + postfix);
+            foreach (var s in combinedOutput)
+            {
+                Console.WriteLine("Combined output with linq: " + s);
+            }
         }
         #endregion
     }
