@@ -9,7 +9,7 @@ namespace Iterator.Concrete
         private ArrayList _items = new ArrayList();
         public override AbstractAndBaseFramework.Iterator CreateIterator()
         {
-            return new ConcreteIterator(this);
+            //return new ConcreteIterator(this);
         }
     }
 }
