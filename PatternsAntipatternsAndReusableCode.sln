@@ -73,6 +73,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgos", "SortingAlgo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactoringWithLinq", "RefactoringWithLinq\RefactoringWithLinq.csproj", "{EB28EEE9-D804-46EE-85C7-F0FD42BA5DE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerformanceAntiPatterns", "PerformanceAntiPatterns", "{861D1DF0-905D-4722-826A-4B6D42585D78}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceDocuments\Common Patterns for Poorly-Behaved Multithreaded Applications.html = ReferenceDocuments\Common Patterns for Poorly-Behaved Multithreaded Applications.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="en-us"><link rel="canonical" href="https://msdn.microsoft.com/en-us/library/ee329530.aspx">
+    <title>Common Patterns for Poorly-Behaved Multithreaded Applications</title>
+
+
+
+
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/ee329530(d=default,l=en-us,v=vs.110).aspx">
+
+<meta name="NormalizedUrl" content="https://msdn.microsoft.com/en-us/library/ee329530(d=default,l=en-us,v=vs.110).aspx">
+
+<meta name="ms.normalizedurl" content="https://msdn.microsoft.com/en-us/library/ee329530(d=default,l=en-us,v=vs.110).aspx">
+
+<meta name="DCSext.ProductFamily" content="LIB_DG">
+
+<meta name="DCSext.Product" content="ALM_dev">
+
+<meta name="DCSext.Title" content="Common Patterns for Poorly-Behaved Multithreaded Applications">
+
+<meta name="AmbientContext" content="{&quot;layout.limit_max_width&quot;:false,&quot;AmbientContextId&quot;:&quot;76FB8973-417E-4CBF-8CF2-AC0214B4A09D&quot;,&quot;display.use_large_font&quot;:true,&quot;insight.perf_timing&quot;:true,&quot;AmbientContextDownstream&quot;:{&quot;LogTrace&quot;:false},&quot;display.high_contrast&quot;:false,&quot;insight.use_wedcs_vnext&quot;:true}">
+
+<meta name="VotingContextUrl" content="https://msdn.microsoft.com/en-us/library/ee329530(d=default,l=en-us,v=vs.110).aspx">
+
+<meta name="MN" content="9DDD8832-6:24:59 AM">
+
+<meta name="Search.ShortId" content="ee329530">
+
+<meta name="ms.shortidmsdn" content="ee329530">
+
+<meta name="ms.locale" content="en-us">
+
+<meta name="ms.prodver" content="VS.110">
+
+<meta name="ms.contentlang" content="EN">
+
+<meta name="ms.lang" content="EN">
+
+<meta name="ms.loc" content="US">
+
+<meta name="ms.sitever" content="2017.08.13.1">
+
+<meta name="ms.assetid" content="00d10629-e20f-4d6d-8643-c59a3879812e">
+
+<meta name="ms.auth" content="0">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+        
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/ai.0.js.download" async=""></script><script type="text/javascript" data-do-not-move="true">
+        //<![CDATA[
+        var AmbientContext = null;
+
+        (function(){
+            var root = (function(){return this;}).call(null);
+
+            var GetCookie = function(name){
+                var cookies = root.document.cookie ? root.document.cookie.split('; ') : [];
+                for (var i = 0; i < cookies.length; i++) {
+                    var pos = cookies[i].indexOf('=');
+                    if (name === root.decodeURIComponent(cookies[i].slice(0, pos)))
+                    {
+                        var cookie = cookies[i].slice(pos + 1).replace(/\+/g, ' ');
+                        cookie = root.decodeURIComponent(cookie);
+                        return cookie;
+                    }
+                }
+            };
+
+            var JsonDeserialize = function(content) {
+                return root.JSON && root.JSON.parse ? root.JSON.parse(content) : (new Function('return (' + content + ')'))();
+            };
+
+            try {
+                AmbientContext = GetCookie('AmbientContext');
+                AmbientContext = AmbientContext && JsonDeserialize(AmbientContext);
+            } catch(ex) {
+            } finally {
+                AmbientContext = AmbientContext || null;
+            }
+        })();
+        //]]>
+    </script>
+
+    <script type="text/javascript" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/jquery-1.9.1.min.js.download" data-do-not-move="true" data-provides="jQuery"></script>
+    
+<link rel="stylesheet" type="text/css" href="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/Combined.css"><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "https://i-msdn.sec.s-msft.com", 
+	"js": "https://i2-msdn.sec.s-msft.com", 
+	"css": "https://i-msdn.sec.s-msft.com", 
+	"ttf": "https://i-msdn.sec.s-msft.com"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected">try {
+//
+
+        window.appInsightsId = '5eb1b2eb-c47a-497a-a7ac-a1c230b2882f';
+        //
+} finally { MTPS._injectNextScript_1 && MTPS._injectNextScript_1(); }</script><script class="mtps-injected" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/Combined.js.download"></script><link href="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/PrintView.css" rel="stylesheet" type="text/css" media="print"><meta name="ms.layout_limit_max_width" content="false"><meta name="ms.AmbientContextId" content="76FB8973-417E-4CBF-8CF2-AC0214B4A09D"><meta name="ms.display_use_large_font" content="true"><meta name="ms.insight_perf_timing" content="true"><meta name="ms.AmbientContextDownstream" content="%7B%7D"><meta name="ms.display_high_contrast" content="false"><meta name="ms.insight_use_wedcs_vnext" content="true"><meta name="ms.perf.timing" content=",,589,592,1223,1224,3164,3166,3167,3803,3803,3910,,,"><script type="text/javascript" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/ms.js.download"></script><script type="text/javascript" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/jsll-3.2.0.js.download"></script><script type="text/javascript" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/jsll-4.2.0.js.download"></script><script class="mtps-injected" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/SearchBox.jss"></script><script async="" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/t.js.download"></script><script class="mtps-injected" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/JumpRedirect.js.download"></script><script class="mtps-injected">try {
+MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = 'Expand'; MTPS.LocalizedStrings.CollapseButtonTooltip = 'Collapse'; MTPS.LocalizedStrings.EnhancedExpandTooltip = 'Click to expand. Double-click to expand all.'; MTPS.LocalizedStrings.EnhancedCollapseTooltip = 'Click to collapse. Double-click to collapse all.'; MTPS.LocalizedStrings.ExpandAllButtonTooltip = 'Expand All'; MTPS.LocalizedStrings.CollapseAllButtonTooltip = 'Collapse All';
+} finally { MTPS._injectNextScript_5 && MTPS._injectNextScript_5(); }</script><script class="mtps-injected" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/Combined.js(1).download"></script><script src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/broker.js.download"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_7 && MTPS._injectNextScript_7(); }</script></head>
+<body class="library Chrome">
+    <div id="page">
+
+        
+
+        
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+        
+    <input type="hidden" id="isHeaderBleeding" value="true">
+    <div id="ux-header" dir="ltr" class="ltr msdn" ms.pgarea="header" data-device-type="desktop">
+        
+
+      <header ms.pgarea="header">
+        <span id="singleCol"></span>
+        <span id="doubleCol"></span>
+        <span id="isMobile"></span>
+        <div>
+          <div class="row topRow" role="banner">
+            <div class="top">
+              <div class="left">
+                <a class="msdnLogoImg" href="https://msdn.microsoft.com/en-us" title="MSDN home" ms.cmpgrp="mslogo">
+                  <div class="clip70x15">
+                    <img alt="Microsoft Logo" id="msft-logo" class="msft-logo" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/HeaderFooterSprite.png">
+                  </div>
+                </a>
+                <div class="GrayPipeDiv clip1x18">
+                  <img alt="Gray Pipe" class="GrayPipe" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/HeaderFooterSprite.png">
+                </div>
+                  <a class="DevCenterFullNameNonMegaBlade" href="https://msdn.microsoft.com/en-us">Developer Network</a>
+                <a class="DevCenterFullName" href="https://msdn.microsoft.com/en-us">Developer Network</a>
+                <a class="DevCenterShortName" href="https://msdn.microsoft.com/en-us">Developer</a>
+              </div>
+              <div class="right" ms.cmpgrp="aux nav">
+                <div id="signIn" aria-label="Profile button">
+
+  <div class="profileImage"></div>
+
+
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=13&amp;ct=1504099499&amp;rver=6.7.6640.0&amp;wp=mcmbi&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=https%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fee329530%2528v%3dvs.110%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-us">Sign in</a></div>
+
+
+
+
+                <div class="auxNav">
+                  <div>
+                    <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://my.visualstudio.com/?wt.mc_id=o~msft~msdn~nav~subscriber&amp;campaign=o~msft~msdn~nav~subscriber" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">
+    <p xmlns="">Subscriber portal</p>
+  </a>
+</div>
+                    <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://www.visualstudio.com/free-developer-offers/" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">Get tools</a>
+</div>
+                  </div>
+                        <div>
+                            
+                        </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row middleRow">
+            <div class="expandTop" style="display: none;">
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+          </div>
+        </div>
+        <div id="buttomRowWrapper" class="bg_default">
+          <div class="row buttomRow bg_default">
+            <div class="bottom">
+              <div class="left" role="navigation" aria-label="header toc" ms.cmpgrp="main nav">
+                <a id="grip" class="menu-icon" href="javascript:void(0)" role="button" aria-label="navigation menu"></a>
+                
+                <div id="drawer">
+                  <div class="toc">
+                    
+        <nav>
+            <ul class="navL1" ms.cmpgrp="main nav">
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Downloads</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://www.visualstudio.com/downloads/download-visual-studio-vs" role="link" title="Visual Studio">Visual Studio</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/microsoft-sdks-msdn" role="link" title="SDKs">SDKs</a>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Trial software" role="button" aria-expanded="false">Trial software</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/evalcenter" title="Free downloads" role="link">Free downloads</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/officeevaluationresources" title="Office resources" role="link">Office resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sharepoint2013resources" title="SharePoint Server 2013 resources" role="link">SharePoint Server 2013 resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/sqlserver2014expressresources" title="SQL Server 2014 Express resources" role="link">SQL Server 2014 Express resources</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/windowsserver2012r2resources" title="Windows Server 2012 resources" role="link">Windows Server 2012 resources</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Programs</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Subscriptions" role="button" aria-expanded="false">Subscriptions</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/msdn-subscriptions-overview" title="Overview" role="link">Overview</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/msdn-subscriptions-administration" title="Administrators" role="link">Administrators</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li class="inactive toggle">
+
+                                                <a href="javascript:void(0)" title="Students" role="button" aria-expanded="false">Students</a>
+                                                <ul class="navL3" style="display: none;">
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/imagine/imagine-home" title="Microsoft Imagine" role="link">Microsoft Imagine</a>
+                                                        </li>
+                                                        <li class="inactive">
+                                                            <a href="https://msdn.microsoft.com/microsoftstudentpartners" title="Microsoft Student Partners" role="link">Microsoft Student Partners</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/applicationbuilder" role="link" title="ISV">ISV</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://www.microsoft.com/bizspark" role="link" title="Startups">Startups</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://events.microsoft.com/" role="link" title="Events">Events</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Community</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/magazine/dd767791" role="link" title="Magazine">Magazine</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://social.msdn.microsoft.com/forums/" role="link" title="Forums">Forums</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://blogs.msdn.microsoft.com/" role="link" title="Blogs">Blogs</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://channel9.msdn.com/" role="link" title="Channel 9">Channel 9</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li class="inactive current toggle">
+                                <a href="javascript:void(0)" role="button" aria-expanded="false">Documentation</a>
+                                <ul class="navL2" style="display: none;">
+                                        <li class="inactive current">
+
+                                                <a href="https://msdn.microsoft.com/library" role="link" title="APIs and reference">APIs and reference</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/developer-centers-msdn" role="link" title="Dev centers">Dev centers</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://code.msdn.microsoft.com/" role="link" title="Samples">Samples</a>
+                                        </li>
+                                        <li class="inactive">
+
+                                                <a href="https://msdn.microsoft.com/retiredcontent" role="link" title="Retired content">Retired content</a>
+                                        </li>
+                                </ul>
+                        </li>
+            </ul>
+        </nav>
+
+                  </div>
+                </div>
+              </div>
+              <div class="right" ms.title="search" role="search">
+                <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get">
+      <button id="FakeHeaderSearchButton" value="Search" type="submit" class="header-search-button" role="button" aria-label="search finder" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon">
+        <div id="search-finder-div" class="clip16x20">
+          <img alt="search finder" id="search-finder" class="search-finder" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/HeaderFooterSprite.png">
+        </div>
+      </button>
+      <button id="HeaderSearchButton" style="display:none" data-searchtype="icon" data-pgarea="header" title="Search MSDN" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="icon"></button>
+      <div id="searchSplitter"></div>
+      <div id="searchCloseIconDiv" class="clip16x20" tabindex="0">
+        <img alt="search clear" id="searchCloseIcon" class="search-clear-x" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/HeaderFooterSprite.png">
+      </div>
+      <div id="searchTextContainer" style="width: 0px; display: none;"><p role="alert" style="height: 1px;width: 1px;overflow: hidden;position: absolute;"></p>
+        <input id="HeaderSearchTextBox" name="query" type="text" aria-label="Search Input Box" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off" data-searchtype="searchbox" role="combobox" aria-autocomplete="both" aria-owns="MSDNSearchAutoCompleteList" aria-live="polite" placeholder="" data-pgarea="header" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="enter-key">
+      <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; background-color: rgb(255, 255, 255); color: rgb(255, 255, 255); font-family: Arial; font-size: 16px;"><div id="SuggestionContainer"><ul data-pgarea="header" data-searchtype="search dropdown" id="MSDNSearchAutoCompleteList" role="listbox" aria-controls="HeaderSearchTextBox" ms.interactiontype="2" ms.title="search" ms.pgarea="header" ms.searchtype="suggested keyword" style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></div>
+    </form>
+    
+    
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </header>
+
+    <div id="overlayMaskHeader"></div></div>
+
+    
+    
+    
+    <div id="jumpInfo" style="display: none">We’re sorry. The content you requested has been removed. You’ll be auto redirected in 1 second.</div>
+
+
+
+
+
+<link type="text/css" rel="stylesheet">
+<link type="text/css" rel="stylesheet">
+
+
+    <div id="breadcrumbs" ms.pgarea="body" ms.cmpgrp="breadcrumbs">
+        <div id="breadcrumbDesktop" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/dd831853(v=vs.110).aspx" title="Visual Studio 2012"></a></span>
+                        <span><a href="https://msdn.microsoft.com/en-us/library/h8w79z10(v=vs.110).aspx" title="Application Development in Visual Studio"><span>Application Development in Visual Studio</span></a></span>
+                        <span><a href="https://msdn.microsoft.com/en-us/library/dd264943(v=vs.110).aspx" title="Quality and Diagnostic Tools"><span>Quality and Diagnostic Tools</span></a></span>
+                        <span class="breadcrumbDropSmall">
+                            <a id="breadcrumbDropDownButton" href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#" targethref="https://msdn.microsoft.com/en-us/library/dd264943(v=vs.110).aspx" title="Concurrency Visualizer" role="button" aria-expanded="false"><span>Concurrency Visualizer</span></a>
+                        </span>
+        </div>
+        <div id="breadcrumbDropDownMenu" style="display: none;"></div>
+
+        <div id="breadcrumbTablet" class="breadCrumb">
+                        <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/dd264943(v=vs.110).aspx" title="Quality and Diagnostic Tools"></a></span>
+                    <span><a href="https://msdn.microsoft.com/en-us/library/dd537632(v=vs.110).aspx" title="Concurrency Visualizer"><span>Concurrency Visualizer</span></a></span>
+                <span class="breadcrumbDropSmall"><a id="tocDropDownButton" href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#" title="Common Patterns for Poorly-Behaved Multithreaded Applications" role="button" aria-expanded="false"><span>Common Patterns for Poorly-Behaved Multithreaded Applications</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/ee329530(d=printer,v=vs.110).aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fee329530(v%3dvs.110).aspx">
+                <ins class="export"></ins>Export (<span class="count">0</span>)
+            </a>
+        </div></div>
+        <div id="tocDropDownMenu" style="display: none;"></div>
+        <div id="breadcrumbMobile" class="breadCrumb">
+                <span class="breadcrumbEllipsis"><a href="https://msdn.microsoft.com/en-us/library/dd537632(v=vs.110).aspx" title="Concurrency Visualizer"></a></span>
+            <span class="breadcrumbDropSmall"><a id="tocPopupButton" href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#" title="Common Patterns for Poorly-Behaved Multithreaded Applications" role="button" aria-expanded="false"><span>Common Patterns for Poorly-Behaved Multithreaded Applications</span></a></span>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/ee329530(d=printer,v=vs.110).aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isd_printABook" href="https://msdn.microsoft.com/en-us/library/export/help/?returnurl=%2fen-us%2flibrary%2fee329530(v%3dvs.110).aspx">
+                <ins class="export"></ins>Export (<span class="count">0</span>)
+            </a>
+        </div></div>
+    </div>
+    <div id="tocPopupMenu" style="display: none;">
+        <div id="tocPopMenuClose" class="tocCloseLarge" role="button" aria-label="Close Popup Menu" tabindex="0"></div>
+        <div id="tocTitle">Common Patterns for Poorly-Behaved Multithreaded Applications</div>        
+    </div>
+
+    
+
+
+        <div id="body" ms.pgarea="body" class="">
+            <span id="tabletView_large"></span>
+            <span id="tabletView_small"></span>
+            <span id="mobileView"></span>
+            
+
+
+
+
+
+
+
+
+
+    <div id="leftNav" ms.cmpgrp="left toc" role="navigation" aria-label="left toc" style="height: auto;">
+
+    
+
+
+<div id="tocnav" class="ArchiveV2" style="">
+    <div class="tocunselected">
+        <div id="tocExpandArea">
+            <span class="toc_empty"></span>
+            <span id="tocExpandButton"><a href="javascript:void(0)" aria-label="expand sibling toc" role="button"></a></span>
+        </div>
+        <div id="tocExpand"></div>
+    </div>
+    <div class="tocselected"><div class="toclevel current" data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Common Patterns for Poorly-Behaved Multithreaded Applications">Common Patterns for Poorly-Behaved Multithreaded Applications</a>                </div><div class="tocPadding"></div></div>
+    <div class="tocunselected">
+                
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/hh543790(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Utilization Navigator">Utilization Navigator</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dd627195(v=vs.110).aspx" id="hh784921_VS.110_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Utilization View">Utilization View</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dd627193(v=vs.110).aspx" id="hh784958_VS.110_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Threads View">Threads View</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/dd627197(v=vs.110).aspx" id="hh784996_VS.110_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Cores View">Cores View</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/hh543796(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Advanced Settings Dialog Box (Concurrency Visualizer)">Advanced Settings Dialog Box (Concurrency Visualizer)</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/hh674579(v=vs.110).aspx" id="hh785009_VS.110_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Concurrency Visualizer Markers">Concurrency Visualizer Markers</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<a class="toc_collapsed" href="javascript:void(0)" role="button" aria-label="Expand the table of content" aria-expanded="false"></a><a data-tochassubtree="true" href="https://msdn.microsoft.com/en-us/library/hh543789(v=vs.110).aspx" id="hh784895_VS.110_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Concurrency Visualizer SDK">Concurrency Visualizer SDK</a>                </div>
+                <div class="toclevel " data-toclevel="1">
+<span class="toc_empty"></span><a href="https://msdn.microsoft.com/en-us/library/hh543788(v=vs.110).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Concurrency Visualizer Command Line Utility (CVCollectionCmd)">Concurrency Visualizer Command Line Utility (CVCollectionCmd)</a>                </div>
+    </div>
+    <a id="tocMenuToggler" href="javascript:void(0)" role="button">
+        <span id="tocMenuTogglerIcon" class="tocMenuCollapse" role="button" aria-expanded="true" aria-label="Table of contents menu"></span>
+        <div id="tocMenuTogglerLabel">TOC</div>
+    </a>
+</div>            <div style="display:none">
+                <div id="CollapseLocalizeString">Collapse the table of content</div>
+                <div id="ExpandLocalizeString">Expand the table of content</div>
+            </div>
+        <div>
+            <a id="isd_archiveControlResponsive" style="display:none;" href="javascript:void(0)" role="button" aria-label="Hide Archived Versions" data-include-archive="Show Archived Versions" data-exclude-archive="Hide Archived Versions">
+            </a>
+            <div id="isd_archiveInstrument" style="display:none">This documentation is archived and is not being maintained.</div>
+        </div>
+    </div>
+     <div id="content" class="content" ms.cmpgrp="content body" role="main">
+
+
+
+
+
+
+
+
+    <div id="archiveDisclaimerText" style="display:none">This documentation is archived and is not being maintained.</div>
+
+
+
+<div xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="topic" xmlns="http://www.w3.org/1999/xhtml" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:cs="http://msdn.microsoft.com/en-us/">
+    <h1 class="title">Common Patterns for Poorly-Behaved Multithreaded Applications</h1>
+    
+    <div class="lw_vs">
+      <div id="curversion">
+        <strong>
+                Visual Studio 2012
+            </strong>
+      </div>
+      <div id="versionclick">
+        <div id="vsseperator" class="cl_lw_vs_seperator"></div>
+        <div>
+          <div>
+            <a id="vsLink" href="javascript:void(0)" role="button" aria-label="Other Versions" aria-expanded="false">
+                        Other Versions
+                    </a>
+          </div>
+          <div class="cl_vs_arrow clip10x10">
+            <img class="cl_lw_vs_arrow" id="vsArrow" alt="" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/ImageSprite.png">
+          </div>
+        </div>
+        <ul id="vsPanel">
+          <li class="">
+            <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.140).aspx">Visual Studio 2015 </a>
+          </li>
+          <li class="">
+            <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.120).aspx">Visual Studio 2013 </a>
+          </li>
+          <li class="">
+            <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.100).aspx">Visual Studio 2010</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+    
+    <div id="mainSection">
+      <div id="mainBody">
+        <p>
+          
+        </p>
+        <div class="introduction">
+          <p>The Concurrency Visualizer helps developers to visualize the behavior of a multithreaded application. This tool includes a gallery of common patterns for multithreaded applications that behave badly. The gallery includes typical and recognizable visual patterns that are exposed through the tool, together with an explanation of the behavior that is represented by each pattern, the likely result of that behavior, and the most common approach to resolve it.</p>
+        </div>
+        <div>
+          
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">Lock Contention and Serialized Execution</span>
+              </a>
+              <div id="Anchor_0" class="LW_CollapsibleArea_Anchor_Div active">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_0" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="sectionToggle0">
+              
+            </a>
+            <img id="LockContention_Serialized" alt="Lock Contention Resulting in Serialized Execution" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548826.png" title="Lock Contention Resulting in Serialized Execution" xmlns="">
+            <p>Sometimes a parallelized application stubbornly continues to execute serially even though it has several threads and the computer has a sufficient number of logical cores. The first symptom is poor multithreaded performance, perhaps even a bit slower than a serial implementation. In Threads View, you do not see multiple threads running in parallel; instead, you see that only one thread is executing at any time. At this point, if you click a synchronization segment in a thread, you can see a call stack for the blocked thread (blocking call stack) and the thread that removed the blocking condition (unblocking call stack). In addition, if the unblocking call stack occurs in the process that you are analyzing, a Thread-Ready connector is displayed. From this point, you can navigate to your code from the blocking and unblocking call stacks to investigate the cause of serialization even more. </p>
+            <p>As shown in the following illustration, the Concurrency Visualizer can also expose this symptom in the CPU Utilization View, where, despite the presence of multiple threads, the application consumes only one logical core. </p>
+            <p>For more information, see "Performance Pattern 1: Identifying Lock Contention" in Hazim Shafi's <a href="http://go.microsoft.com/fwlink/?LinkID=160569">Parallel Performance Tools For Windows</a> blog on the MSDN blog Web site.</p>
+            <img id="LockContention_2" alt="Lock Contention" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548827.png" title="Lock Contention" xmlns="">
+          </div>
+        </div>
+        <div>
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">Uneven Workload Distribution</span>
+              </a>
+              <div id="Anchor_1" class="LW_CollapsibleArea_Anchor_Div">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_1" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="sectionToggle1">
+              
+            </a>
+            <img id="UnevenWorkLoad_1" alt="Uneven Workload" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548632.png" title="Uneven Workload" xmlns="">
+            <p>When an irregular distribution of work occurs across several parallel threads in an application, a typical stair-step pattern appears as each thread completes its work, as shown in the previous illustration.The Concurrency Visualizer most often shows very close start times for each concurrent thread. However, these threads typically end in an irregular manner instead of ending simultaneously. This pattern indicates an irregular distribution of work among a group of parallel threads, which could lead to decreased performance. The best approach to such a problem is to reevaluate the algorithm by which work has been divided among the parallel threads. </p>
+            <p>As shown in the following illustration, the Concurrency Visualizer can also expose this symptom in the CPU Utilization View as a gradual step-down in CPU utilization.</p>
+            <img id="UnevenWorkload_2" alt="Uneven Workload" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548633.png" title="Uneven Workload" xmlns="">
+          </div>
+        </div>
+        <div>
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">Oversubscription</span>
+              </a>
+              <div id="Anchor_2" class="LW_CollapsibleArea_Anchor_Div">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_2" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="sectionToggle2">
+              
+            </a>
+            <img id="Oversubscription" alt="Oversubscription" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548828.png" title="Oversubscription" xmlns="">
+            <p>In the case of oversubscription, the number of active threads in a process is larger than the number of available logical cores on the system. The previous illustration shows the results of oversubscription, with significant preemption banding in all active threads. In addition, the legend shows a large percentage of time is spent in Preemption (84 percent in this example). This may indicate that the process is asking the system to execute more concurrent threads than the number of logical cores. However, this may also indicate that other processes on the system are using resources that were assumed to be available to this process. </p>
+            <p>You should consider the following when you evaluate this problem: </p>
+            <ul>
+              <li>
+                <p>The overall system may be oversubscribed. Consider that other processes on the system may be preempting your threads. When you pause over a preemption segment in the threads view, a tooltip will identify the thread and the process that preempted the thread. This process is not necessarily the one that executed during the whole time that your process was preempted, but it provides a hint about what created the preemption pressure against your process. </p>
+              </li>
+              <li>
+                <p>Evaluate how your process determines the appropriate number of threads for execution during this phase of work. If your process directly calculates the number of active parallel threads, consider modifying that algorithm to better account for the number of available logical cores on the system. If you use the Concurrency Runtime, the Task Parallel Library, or PLINQ, these libraries perform the work of calculating the number of threads.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">Inefficient I/O</span>
+              </a>
+              <div id="Anchor_3" class="LW_CollapsibleArea_Anchor_Div">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_3" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="sectionToggle3">
+              
+            </a>
+            <img id="Inefficient_IO" alt="Inefficient I/O" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548829.png" title="Inefficient I/O" xmlns="">
+            <p>Overuse or misuse of I/O is a common cause of inefficiencies in applications. Consider the previous illustration. The Visible Timeline Profile shows that 42 percent of the visible thread time is consumed by I/O. The timeline shows large amounts of I/O, which indicates that the profiled application is frequently blocked by I/O. To see details about the kinds of I/O and where your program is blocked, zoom into problematic regions, examine the Visible Timeline Profile, and then click a specific I/O block to see current call stacks.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">Lock Convoys</span>
+              </a>
+              <div id="Anchor_4" class="LW_CollapsibleArea_Anchor_Div">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_4" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="sectionToggle4">
+              
+            </a>
+            <img id="Lock_Convoys" alt="Lock Convoys" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/IC548830.png" title="Lock Convoys" xmlns="">
+            <p>Lock convoys occur when the application acquires locks in a first-come, first-served order, and when the arrival rate at the lock is higher than the acquisition rate. The combination of these two conditions causes requests for the lock to start backing up. One way to combat this problem is to use "unfair" locks, or locks that give access to the first thread to find them in unlocked states. The previous illustration shows this convoy behavior. To solve the problem, try reducing contention for the synchronization objects and try using unfair locks.</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="LW_CollapsibleArea_TitleDiv">
+            <div>
+              <a class="LW_CollapsibleArea_TitleAhref" title="" role="heading">
+                <span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span>
+                <span class="LW_CollapsibleArea_Title">See Also</span>
+              </a>
+              <div id="Anchor_5" class="LW_CollapsibleArea_Anchor_Div">
+                <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Anchor_5" class="LW_CollapsibleArea_Anchor_Img" title="Right-click to copy and share the link for this section"></a>
+              </div>
+              <div class="LW_CollapsibleArea_HrDiv">
+                <hr class="LW_CollapsibleArea_Hr">
+              </div>
+            </div>
+          </h2>
+          <div class="sectionblock">
+            <a id="seeAlsoToggle">
+              
+            </a>
+            <h4 class="subHeading">Concepts</h4>
+            <div class="seeAlsoStyle">
+              <span>
+                <a href="https://msdn.microsoft.com/en-us/library/dd627193(v=vs.110).aspx">Threads View (Parallel Performance)</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Show:</span>
+        <label>
+            <input type="checkbox" class="libraryFilterInherited" checked="checked" value="Inherit">Inherited
+        </label>
+        <label>
+            <input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected">Protected
+        </label>
+    </div>
+</div>
+    
+<input type="hidden" id="libraryMemberFilterEmptyWarning" value="There are no members available with your current filter settings.">
+
+
+
+    </div>
+<div id="rightNavigationMenu" ms.cmpgrp="right nav" style="">
+    <div id="mobileButtons">
+        
+    </div>
+    <div id="navMain">
+        <div id="closeNavigation">
+            <a class="tocCloseSmall" id="closeButton"></a>
+        </div>
+        <div id="navigationButtons">
+            <a id="isd_print" href="https://msdn.microsoft.com/en-us/library/ee329530(d=printer,v=vs.110).aspx" rel="nofollow"><ins class="print"></ins>Print </a>
+            <a id="isdShare" href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#" role="button" aria-expanded="false">
+                <ins class="share"></ins>Share
+            </a>
+            <div id="socials" style="display: none">
+                <a class="isdFacebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fee329530.aspx" aria-label="Share on Facebook">
+                    <ins class="facebook"></ins>
+                </a>
+                <a class="isdTwitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fee329530.aspx&amp;text=Common%20Patterns%20for%20Poorly-Behaved%20Multithreaded%20Applications&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fee329530.aspx" aria-label="Share on Twitter">
+                    <ins class="twitter"></ins>
+                </a>
+                <a class="isdGooglePlus" href="https://plus.google.com/share?url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Fee329530.aspx" aria-label="Share on Google+">
+                    <ins class="googlePlus"></ins>
+                </a>
+            </div>
+        </div>
+        <div id="indoc_toc" style="" ms.cmpgrp="indoc toc">
+            <div id="indoc_title">IN THIS ARTICLE</div>
+            <ul id="indoc_toclist"><li data-index="0" class="active"><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Lock Contention and Serialized Execution">Lock Contention and Serialized Execution</a></li><li data-index="1" class=""><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Uneven Workload Distribution">Uneven Workload Distribution</a></li><li data-index="2" class=""><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Oversubscription">Oversubscription</a></li><li data-index="3" class=""><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Inefficient I/O">Inefficient I/O</a></li><li data-index="4" class=""><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#Lock Convoys">Lock Convoys</a></li><li data-index="5" class=""><a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#See Also">See Also</a></li></ul>
+        </div>
+    </div>
+</div>
+<div id="rightNavigationMenuThumbnail" class="rightNavigationMenuThumbnail">
+</div>
+
+
+
+
+
+        </div>
+        <div class="clear"></div>
+
+        
+
+<input name="__RequestVerificationToken" type="hidden" value="8N9D4SIzNtvxbSm1dd5pkLll4NUDoaHDSR1620tDk_aA5zvjAYYEmZSyIQCaA8enyjeM48dclW1XfzggWu0vBt7-qtE1">
+<input id="ratingValueSubmitUrl" type="hidden" value="https://msdn.microsoft.com/en-us/library/feedback/rate/ee329530(v=vs.110).aspx">
+<input id="ratingAdditionalSubmitUrl" type="hidden" value="https://msdn.microsoft.com/en-us/library/feedback/additional/ee329530(v=vs.110).aspx">
+<input id="isTopicRated" type="hidden" value="false">
+
+
+
+
+    <div id="lib-footer">
+        
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+        
+    <div id="ux-footer" class="" style="" dir="ltr" ms.pgarea="footer">
+
+
+    <div id="standardRatingBefore" class="clear stdr-container-before"></div>
+    <div id="standardRating" class="stdr-container" ms.pgarea="body" style="width: 1263px; margin-left: 0px; display: block;">
+        <div class="stdr-close" style="display: none;"></div>
+        <div class="stdr-vote stdr-content">
+            <div class="stdr-content">
+                <span class="stdr-votetitle">Is this page helpful?</span>
+                <button class="stdr-yes" aria-label="Yes, this page was helpful">Yes</button>
+                <button class="stdr-no" aria-label="No, this page was not helpful">No</button>
+                <input id="s_ratingValue" type="hidden" value="">
+            </div>
+        </div>
+        <div class="stdr-feedback" style="display: none">
+            <div class="stdr-form">
+                <div class="stdr-fieldtitle">Additional feedback?</div>
+                <textarea class="stdr-detail" rows="6" maxlength="1500"></textarea>
+                <div>
+                    <span class="stdr-count"><span class="stdr-charcnt">1500</span> characters remaining</span>
+                    <div class="stdr-buttons">
+                        <button class="stdr-provide" aria-label="Submit my additional feedback">Submit</button>
+                        <button class="stdr-skip" aria-label="Skip additional feedback">Skip this</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="stdr-thanks" style="display: none">
+            <div class="stdr-content">
+                <span class="stdr-thankyou">Thank you!</span>
+                <span class="stdr-appreciate">We appreciate your feedback.</span>
+            </div>
+        </div>
+
+        
+        <div id="contentFeedbackQAContainer" style="display: none;"></div>
+    </div>
+    <div id="standardRatingPlaceholder" style="display: none"></div>
+    
+
+        <footer class="top" role="navigation" aria-label="footer">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Dev centers</h4>
+    <ul class="links">
+      <li>
+        <a href="https://developer.microsoft.com/en-us/windows" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="https://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="https://www.visualstudio.com/" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="https://docs.microsoft.com/en-us/azure/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/developer-centers-msdn" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">More...</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Learning resources</h4>
+    <ul class="links">
+      <li>
+        <a href="https://mva.microsoft.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="https://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Community</h4>
+    <ul class="links">
+      <li>
+        <a href="https://social.msdn.microsoft.com/forums/en-us/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Forums</a>
+      </li>
+      <li>
+        <a href="https://blogs.msdn.microsoft.com/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Blogs</a>
+      </li>
+      <li>
+        <a href="https://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Support</h4>
+    <ul class="links">
+      <li>
+        <a href="https://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Self support</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <h4 class="linkListTitle">Programs</h4>
+    <ul class="links">
+      <li>
+        <a href="https://bizspark.microsoft.com/Startups/Index" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (for startups)</a>
+      </li>
+      <li>
+        <a href="https://imagine.microsoft.com/en-us" id="CenterLinks4_2151_22" xmlns="http://www.w3.org/1999/xhtml">Microsoft Imagine (for students)</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            </div>
+        </footer>
+
+        <footer class="bottom" role="contentinfo">
+            <span class="localeContainer">
+                
+    <form class="selectLocale" id="selectLocaleForm" action="https://msdn.microsoft.com/en-us/selectlocale-dmc">
+        <input type="hidden" name="fromPage" value="https%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fee329530(v%3dvs.110).aspx">
+        <a href="https://msdn.microsoft.com/en-us/library/ee329530(v=vs.110).aspx#" onclick="$(&#39;#selectLocaleForm&#39;).submit();return false;" title="Change your language">United States (English)</a>
+    </form>
+
+
+            </span>
+
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="https://msdn.microsoft.com/en-us/flashnewsletter" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Newsletter</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/en-us/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Privacy &amp; cookies</a>
+      </li>
+      <li>
+        <a href="https://msdn.microsoft.com/en-us/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Terms of use</a>
+      </li>
+      <li>
+        <a href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+      </li>
+    </ul>
+  </div>
+</div>
+            <span class="logoLegal">
+                <span class="logoSpan clip67x13" role="img" tabindex="0" aria-label="microsoft logo">
+                    <img alt="logo" class="logo" src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/HeaderFooterSprite.png">
+                </span>
+                <span class="copyright">© 2017 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+    </div>
+
+
+        <div class="footerPrintView">
+            <div class="footerCopyrightPrintView">© 2017 Microsoft</div>
+        </div>
+
+        
+        
+
+        
+        
+        
+
+    <input id="tocPaddingPerLevel" type="hidden" value="17">
+
+
+
+        <input id="MtpsDevice" type="hidden" value="Default">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+
+        
+        
+        
+            
+        
+
+<!--[CDATA[ WebTrends view model not available or IncludeLegacyWebTrendsScriptInGlobal feature flag is off]]-->
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" type="hidden" value="EYiPtX9yZOeIqIMnKThUuUa4R3a8-3fz0t4Y33rBnCDYqi8tM2E5DYG5swhf2kzxhULC1w2reXi4TTM2PTAQ_Zia4_M1">
+</div>
+
+
+    </div>
+
+    
+    
+
+    
+
+    
+<script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"js\": \"https://i2-msdn.sec.s-msft.com\", \r\n\t\"css\": \"https://i-msdn.sec.s-msft.com\", \r\n\t\"ttf\": \"https://i-msdn.sec.s-msft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n\n        window.appInsightsId = \u00275eb1b2eb-c47a-497a-a7ac-a1c230b2882f\u0027;\n        //" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,3:Breadcrumbs,4:LibraryRightNavigationMenu,4:PrintExportButton,5:StandardRating,2:Footer,0:Topic,3:ResponsiveSupport,0:AppInsightsPerf,3:ResponsiveToc,0:ABTestControl,4:WEDCS,3:CmpgrpForHeader,1:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Library/Content:3,/Areas/Library/Themes/Base/Content:4,/Areas/Global/Content:5\u0026amp;hashKey=9B821351554FB172FE572BBD060FF016\u0026amp;v=E4B922413C2FF2B00A20AA788A866882" },
+	{ url: "https://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026minimumTermLength=2\u0026pgArea=header\u0026brand=Msdn\u0026loc=en-us\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Search MSDN" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Areas/Epx/Themes/Base/Content/JumpRedirect.js" },
+	{ txt: "MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = \u0027Expand\u0027; MTPS.LocalizedStrings.CollapseButtonTooltip = \u0027Collapse\u0027; MTPS.LocalizedStrings.EnhancedExpandTooltip = \u0027Click to expand. Double-click to expand all.\u0027; MTPS.LocalizedStrings.EnhancedCollapseTooltip = \u0027Click to collapse. Double-click to collapse all.\u0027; MTPS.LocalizedStrings.ExpandAllButtonTooltip = \u0027Expand All\u0027; MTPS.LocalizedStrings.CollapseAllButtonTooltip = \u0027Collapse All\u0027;" },
+	{ url: "https://i2-msdn.sec.s-msft.com/Combined.js?resources=0:LibraryMemberFilter,1:Toc_Fixed,1:CodeSnippet,1:TopicNotInScope,1:VersionSelector,1:SurveyBroker;/Areas/Library/Content:0,/Areas/Epx/Content/Scripts:1\u0026amp;hashKey=D8D1FFAA6CA68460B7EFA5923975CA44\u0026amp;v=E4B922413C2FF2B00A20AA788A866882" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+
+<div id="overlayMask"></div><script src="./Common Patterns for Poorly-Behaved Multithreaded Applications_files/broker-config.js.download"></script></body></html>
