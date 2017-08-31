@@ -1,0 +1,26 @@
+﻿To ensure the Microbenchmarking test's quality follow the guidelines mentioned in here -
+
+1. Ensure that you mimic the environment correctly. For example, do not use in-memory collection
+to test the code that runs on database tables.
+
+2. Ensure that dummy input is as close as possible to actual input elements in terms of 
+quality and quantity. For example feed random integers in large quantity to a sorting
+logic in order to test it.
+
+3. Ensure that test runs long enough to be a true (or as close to 'true' as possible)
+representation of real-life scenario.
+
+4. Ensure that you disable optimization done by compiler and other similar tools.
+
+5. Ensure that benchmarking runs in isolation and without any intervention (or as less as possible)
+from any other processes or threads.
+
+6. Discard first measurement, it is most likely to be influenced by various factors such as
+system startup, runtime startup, website loading etc. Take multiple measurements and draw an
+average figure based on them.
+
+7. Use least expensive and most acurate time measurement technique - System.Diagnostics.Stopwatch
+
+8. Know the resolution, precision, and accuracy of measurement.
+
+9. Always look under the hood - IL.

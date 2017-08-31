@@ -71,7 +71,7 @@ namespace BadAndGoodMicroBenchMarking
             /*
              * If you remove the comments around 'virtual' keyword in LogicContainer and LogicContainer2
              * class definitions, you will observe that performance readings have change drastically.
-             * With virtual keyword present, there is no explicit need of checking for a NULL reference
+             * With virtual keyword present, there is no need of explicitly checking for a NULL reference
              * on either of these objects, compiler is smart enough to understand that if execution
              * has reached to a function call it is through a correctly typed object instance.
              * After adding the virtual keyword to the methods, compiler generates exactly same
