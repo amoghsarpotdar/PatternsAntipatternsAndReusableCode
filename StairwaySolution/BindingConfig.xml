@@ -1,0 +1,4 @@
+﻿<module name="ModA">
+  <bind service="StairwayInterface.IStairwayExample1, StairwayInterface"
+        to="StairwayImplementation.ImplementingClass, StairwayImplementation" />
+</module>
