@@ -102,6 +102,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairwayInterface", "Stairw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairwayImplementation", "StairwayImplementation\StairwayImplementation.csproj", "{D4221FB6-A370-4B0F-9383-AEE86FF43F1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNullObjectPattern", "TheNullObjectPattern\TheNullObjectPattern.csproj", "{7462340D-5386-4668-902F-DFCDE067E1DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -494,6 +496,18 @@ Global
 		{D4221FB6-A370-4B0F-9383-AEE86FF43F1C}.Release|x64.Build.0 = Release|Any CPU
 		{D4221FB6-A370-4B0F-9383-AEE86FF43F1C}.Release|x86.ActiveCfg = Release|Any CPU
 		{D4221FB6-A370-4B0F-9383-AEE86FF43F1C}.Release|x86.Build.0 = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|x64.Build.0 = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Debug|x86.Build.0 = Debug|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|x64.ActiveCfg = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|x64.Build.0 = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|x86.ActiveCfg = Release|Any CPU
+		{7462340D-5386-4668-902F-DFCDE067E1DC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -540,5 +554,6 @@ Global
 		{0CCF47F4-06C9-43A0-9F44-20E00F9F4646} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 		{39027483-00E5-427C-AC67-368E750FB03E} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 		{D4221FB6-A370-4B0F-9383-AEE86FF43F1C} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
+		{7462340D-5386-4668-902F-DFCDE067E1DC} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 	EndGlobalSection
 EndGlobal

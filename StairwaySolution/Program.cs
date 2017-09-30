@@ -17,8 +17,7 @@ namespace StairwaySolution
         /// You may have to fiddle a bit with configuration file in order to get the
         /// mapping to work.
         /// </summary>
-        /// <param name="args"></param>
-        static void Main(string[] args)
+        static void Main()
         {
             IKernel kernel = new StandardKernel();
             kernel.Load(@"E:\\Projects\\PatternsAntipatternsAndReusableCode\\StairwaySolution\\BindingConfig.xml");
