@@ -7,9 +7,14 @@ namespace Iterator.Concrete
     class ConcreteAggregate : Aggregate
     {
         private ArrayList _items = new ArrayList();
+
         public override AbstractAndBaseFramework.Iterator CreateIterator()
         {
-            //return new ConcreteIterator(this);
+            throw new NotImplementedException();
         }
+        //public override AbstractAndBaseFramework.Iterator CreateIterator()
+        //{
+        //    //return new ConcreteIterator(this);
+        //}
     }
 }
