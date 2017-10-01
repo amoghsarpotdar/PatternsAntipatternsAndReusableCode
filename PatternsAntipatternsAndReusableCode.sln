@@ -110,6 +110,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixin", "Mixin\Mixin.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentIntrefaces", "FluentIntrefaces\FluentIntrefaces.csproj", "{609E205E-3709-42D1-B558-5A92D56B32A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCaseToPoloymorphism", "SwitchCaseToPoloymorphism\SwitchCaseToPoloymorphism.csproj", "{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -550,6 +552,18 @@ Global
 		{609E205E-3709-42D1-B558-5A92D56B32A0}.Release|x64.Build.0 = Release|Any CPU
 		{609E205E-3709-42D1-B558-5A92D56B32A0}.Release|x86.ActiveCfg = Release|Any CPU
 		{609E205E-3709-42D1-B558-5A92D56B32A0}.Release|x86.Build.0 = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|x64.Build.0 = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Debug|x86.Build.0 = Debug|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|x64.ActiveCfg = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|x64.Build.0 = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -600,5 +614,6 @@ Global
 		{03BA65B3-6C0C-4E92-902C-AAD79D3DD73D} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 		{9F7D3C94-BFC6-4EDE-B0C0-CB760BFB2B21} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 		{609E205E-3709-42D1-B558-5A92D56B32A0} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
+		{B5F01B2F-E856-4477-86CE-B716FBFE0CAB} = {6C20B2F8-6EC6-4216-8FA4-F51738C5EE86}
 	EndGlobalSection
 EndGlobal
