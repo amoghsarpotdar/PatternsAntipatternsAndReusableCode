@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RecordingDto" targetNamespace="DataTransferObjectWithTypedDataSet" xmlns:mstns="DataTransferObjectWithTypedDataSet" xmlns="DataTransferObjectWithTypedDataSet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RecordingDto" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="RecordingDto" msprop:Generator_UserDSName="RecordingDto">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="recording" msprop:Generator_RowDeletingName="RecordingDeleting" msprop:Generator_RowClassName="Recording" msprop:Generator_RowEvHandlerName="RecordingChangeEventHandler" msprop:typedChildren="Track" msprop:Generator_RowEvArgName="RecordingChangeEvent" msprop:Generator_TablePropName="Recordings" msprop:Generator_TableVarName="tableRecordings" msprop:typedPlural="Recordings" msprop:Generator_RowChangingName="RecordingChanging" msprop:Generator_TableClassName="RecordingsDataTable" msprop:Generator_UserTableName="recording" msprop:Generator_RowDeletedName="RecordingDeleted" msprop:Generator_RowChangedName="RecordingChanged" msprop:typedName="Recording">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:typedName="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:typedName="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="title" type="xs:string" />
+              <xs:element name="artist" msprop:Generator_ColumnPropNameInRow="Artist" msprop:Generator_ColumnVarNameInTable="columnArtist" msprop:typedName="Artist" msprop:Generator_ColumnPropNameInTable="ArtistColumn" msprop:Generator_UserColumnName="artist" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="track" msprop:Generator_RowClassName="Track" msprop:Generator_RowEvHandlerName="TrackChangeEventHandler" msprop:typedParent="Recording" msprop:Generator_RowDeletingName="TrackDeleting" msprop:Generator_RowEvArgName="TrackChangeEvent" msprop:Generator_TablePropName="Tracks" msprop:Generator_TableVarName="tableTracks" msprop:typedPlural="Tracks" msprop:Generator_RowChangingName="TrackChanging" msprop:Generator_TableClassName="TracksDataTable" msprop:Generator_UserTableName="track" msprop:Generator_RowDeletedName="TrackDeleted" msprop:Generator_RowChangedName="TrackChanged" msprop:typedName="Track">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:typedName="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
+              <xs:element name="title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:typedName="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="title" type="xs:string" />
+              <xs:element name="duration" msprop:Generator_ColumnPropNameInRow="Duration" msprop:Generator_ColumnVarNameInTable="columnDuration" msprop:typedName="Duration" msprop:Generator_ColumnPropNameInTable="DurationColumn" msprop:Generator_UserColumnName="duration" type="xs:string" />
+              <xs:element name="recordingId" msprop:Generator_ColumnPropNameInRow="RecordingId" msprop:Generator_ColumnVarNameInTable="columnRecordingId" msprop:typedName="RecordingId" msprop:Generator_ColumnPropNameInTable="RecordingIdColumn" msprop:Generator_UserColumnName="recordingId" type="xs:long" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="RecordingDTOKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:recording" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="RecordingDTOKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:track" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:keyref name="recordingtrack" refer="RecordingDTOKey1" msprop:rel_Generator_UserChildTable="track" msprop:rel_Generator_ChildPropName="GetTracks" msprop:rel_Generator_UserRelationName="recordingtrack" msprop:rel_Generator_ParentPropName="Recording" msprop:rel_Generator_RelationVarName="relationrecordingtrack" msprop:rel_Generator_UserParentTable="recording">
+      <xs:selector xpath=".//mstns:track" />
+      <xs:field xpath="mstns:recordingId" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
