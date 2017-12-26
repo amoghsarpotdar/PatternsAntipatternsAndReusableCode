@@ -98,14 +98,19 @@ namespace CommandLineParser
             FormatInvalidArguments(builder, this.MalformedArguments, "Malformed arguments : {0}{1}");
 
             //For the repeated arguments group them for display
-            var argumentGroups = from argument in this.RepeatedArguments
-                                 group argument by argument.Switch.ToUpper() into ag
-                                 select new {Switch = ag.Key, Instances = ag};
-
-            foreach (var argumentGroup in argumentGroups)
+            if (this.RepeatedArguments != null)
             {
-                builder.AppendFormat($"Repeated argument: {argumentGroup.Switch}{Environment.NewLine}");
-                FormatInvalidArguments(builder, argumentGroup.Instances.ToList(), "\t{0}{1}");
+                var argumentGroups = from argument in this.RepeatedArguments
+                    group argument by argument.Switch.ToUpper()
+                    into ag
+                    select new {Switch = ag.Key, Instances = ag};
+
+
+                foreach (var argumentGroup in argumentGroups)
+                {
+                    builder.AppendFormat($"Repeated argument: {argumentGroup.Switch}{Environment.NewLine}");
+                    FormatInvalidArguments(builder, argumentGroup.Instances.ToList(), "\t{0}{1}");
+                }
             }
             return builder.ToString();
         }

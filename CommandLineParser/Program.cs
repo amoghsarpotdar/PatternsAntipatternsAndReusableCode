@@ -40,6 +40,7 @@ namespace CommandLineParser
                 string invalidArguments = analyzer.InvalidArgumentDisplay();
                 Console.WriteLine(invalidArguments);
                 ShowUsage(analyzer);
+                Console.ReadKey();
                 return;
             }
 
@@ -73,6 +74,8 @@ namespace CommandLineParser
                     Console.WriteLine($"DEBUGOUTPUT : {item}");
                 }
             }
+
+            Console.ReadKey();
         }
 
         public static void ShowUsage(ArgumentSemanticAnalyzer analyzer)
